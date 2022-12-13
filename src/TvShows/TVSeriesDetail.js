@@ -12,23 +12,17 @@ import CardMedia from '@mui/material/CardMedia';
 
 const parser = new DOMParser();
 function TVSeriesDetail() {
-    const [selectedShow, setSelectedShow] = useState({})
     const location = useLocation();
     const cardDetail = location.state.cardVal
-    console.log(location.state.cardVal)
+    // console.log(location.state.cardVal)
     const htmlStr = cardDetail.show.summary
 
     const txtDoc = parser.parseFromString(htmlStr, "text/html");
     var charTxt = ""
     txtDoc.body.childNodes.forEach((value) => {
         charTxt += value.innerText
-        //   //  console.log(value.innerText)
 
     })
-    const watchNow = () => {
-        console.log("button is clicked", cardDetail.url)
-
-    }
 
     return (
 
@@ -57,9 +51,9 @@ function TVSeriesDetail() {
             <Grid container
                 direction="row"
                 justifyContent="center"
-                alignItems="flex-start" mt={1} spacing={2}>
+                alignItems="flex-start" mt={1} spacing={2} mb={2} mr={2} ml={2}>
 
-                <Grid item xs={4}>
+                <Grid item md={4}>
                     <Grid container direction="column">
                         <Grid item>
                             {cardDetail.show.image ? (<img src={cardDetail.show.image.medium} alt="Image" />) : (
@@ -86,7 +80,7 @@ function TVSeriesDetail() {
                 </Grid>
 
 
-                <Grid item xs={6}>
+                <Grid item md={6}>
                     <Grid container direction="column">
                         <Grid item>
                             <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 600 }}>

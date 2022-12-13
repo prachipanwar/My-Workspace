@@ -10,28 +10,9 @@ import { CardActionArea } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate, createSearchParams } from "react-router-dom";
 import cardImage from './Images/cardImage.jpg'
-//import { makeStyles } from "@material-ui/core/styles";
+import seriesImage from './Images/seriesImage.jpg';
 
 const parser = new DOMParser();
-const LINES_TO_SHOW = 4;
-const theme = createTheme();
-theme.typography.h5 = {
-    overflow: "hidden",
-    textOverflow: "ellipsis",
-    display: "-webkit-box",
-    "-webkit-line-clamp": LINES_TO_SHOW,
-    "-webkit-box-orient": "vertical"
-};
-
-// const useStyles = makeStyles({
-//   multiLineEllipsis: {
-//     overflow: "hidden",
-//     textOverflow: "ellipsis",
-//     display: "-webkit-box",
-//     "-webkit-line-clamp": LINES_TO_SHOW,
-//     "-webkit-box-orient": "vertical"
-//   }
-// });
 
 function TvSeriesMain() {
     const navigate = useNavigate();
@@ -56,11 +37,7 @@ function TvSeriesMain() {
     }
     const selectCard = (cardVal) => {
         navigate(`/series-detail`, { state: { cardVal } })
-        // let path = `/series-detail`;
-        // navigate(path,{state:cardVal});
-        // console.log('card is clicked',cardVal)
-        // setSelectedShow(cardVal)
-
+      
     }
 
 
@@ -90,7 +67,7 @@ function TvSeriesMain() {
             <Grid
                 container
                 direction="row"
-                justifyContent="space-between"
+                justifyContent="flex-start"
                 alignItems="center"
                 spacing={3}
                 mt={3}
@@ -109,25 +86,21 @@ function TvSeriesMain() {
                         //   //  console.log(value.innerText)
 
                     })
-
-
-
-                    console.log("helloo--", item.show.image)
-
                     return (
-                        <Grid item xs={4} key={item.id}>
-                            <Card sx={{ maxWidth: 360 }} onClick={() => selectCard(item)}>
+                        <Grid item md={4} key={item.id}>
+                            <Card sx={{ maxWidth: 360, display: 'flex' }} onClick={() => selectCard(item)}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
-                                        height="140"
-                                        image={item.show.image ? item.show.image.medium : cardImage}
+                                        //height="160"
+                                        image={item.show.image ? item.show.image.medium : seriesImage}
                                         alt="Image content"
+                                        sx={{ width: 151 }}
                                     />
                                 </CardActionArea>
-                                <CardContent>
+                                <CardContent >
 
-                                    <Typography gutterBottom variant="h5" component="div" sx={{
+                                    <Typography gutterBottom variant="h6" component="div" sx={{
                                         overflow: "hidden",
                                         textOverflow: "ellipsis",
                                         display: "-webkit-box",
@@ -141,7 +114,7 @@ function TvSeriesMain() {
                                         overflow: "hidden",
                                         textOverflow: "ellipsis",
                                         display: "-webkit-box",
-                                        WebkitLineClamp: "4",
+                                        WebkitLineClamp: "6",
                                         WebkitBoxOrient: "vertical",
                                     }}>
                                         {charTxt}
